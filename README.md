@@ -1,114 +1,110 @@
-Blackjack Game
+# Student Performance Analysis Tool
 
-Introduction
+## Introduction
 
-This project is a Python program that simulates a simplified version of the popular casino game Blackjack (also known as 21). Players compete against a dealer to accumulate as much money as possible without exceeding a hand value of 21. This program uses Object-Oriented Programming (OOP) concepts to implement game logic, such as deck creation, card dealing, betting, and game rules.
+This project is a Python-based tool designed to analyze the performance of students in a school. The program processes report cards stored in JSON files, calculates key metrics, and outputs insights such as the average student mark, hardest and easiest subjects, and the best and worst-performing grades and students. This tool is intended for use by school staff to gain a deeper understanding of student performance.
 
-Features
+---
 
-Gameplay Mechanics:
+## Features
 
-Player vs. dealer gameplay.
+- **Data Loading:**
+  - Reads student report cards from 1,000 JSON files.
+  - Each JSON file contains data about a student's grades in five subjects and their grade level.
 
-Ace can be valued at 1 or 11, depending on the player's hand.
+- **Performance Metrics:**
+  - **Average Student Mark:** Calculates the average mark across all students.
+  - **Hardest Subject:** Identifies the subject with the lowest average grade.
+  - **Easiest Subject:** Identifies the subject with the highest average grade.
+  - **Best Performing Grade:** Finds the grade level with the highest average marks.
+  - **Worst Performing Grade:** Finds the grade level with the lowest average marks.
+  - **Best Student ID:** Identifies the student with the highest average.
+  - **Worst Student ID:** Identifies the student with the lowest average.
 
-Automatic handling of busts, ties, and Blackjack scenarios.
+---
 
-User Interaction:
+## How It Works
 
-Place bets between $1 and the player's current balance.
+1. **Loading Data:**
+   - The program loads all 1,000 student report cards from the `students` folder.
+   - Each report card contains a unique student ID, grade level, and marks in five subjects: math, science, history, English, and geography.
 
-Options to hit or stay during the player's turn.
+2. **Calculations:**
+   - Calculates individual student averages by averaging marks across all subjects.
+   - Computes the overall average student mark by averaging all student averages.
+   - Determines subject averages and identifies the hardest and easiest subjects.
+   - Groups students by grade level to calculate grade-wise averages.
+   - Identifies the best and worst-performing students and grades.
 
-Clear and user-friendly prompts with validation.
+3. **Output:**
+   - Outputs the calculated metrics, including:
+     - Average Student Mark.
+     - Hardest Subject.
+     - Easiest Subject.
+     - Best Performing Grade.
+     - Worst Performing Grade.
+     - Best Student ID.
+     - Worst Student ID.
 
-Game Rules:
+---
 
-Dealer hits until the hand value reaches 17 or more.
+## Expected Output
 
-Player wins, ties, or loses based on hand comparison with the dealer.
+```
+Average Student Grade: 50.44
+Hardest Subject: geography
+Easiest Subject: english
+Best Performing Grade: 6
+Worst Performing Grade: 5
+Best Student ID: 549
+Worst Student ID: 637
+```
 
-Blackjack payout is 1.5x the original bet.
+---
 
-Sample Usage
+## Code Structure
 
-Welcome to Blackjack!
+- **`main.py`**:
+  - Core script that implements all functionality, including data loading, calculations, and output.
 
-You are starting with $500. Would you like to play a hand? yes
-Place your bet: 10
-You are dealt: A♥, K♣
-The dealer is dealt: 7♦, Unknown
-Blackjack! You win $15 :)
+- **Data Files:**
+  - JSON files in the `students` folder, each representing a student's report card.
 
-You are starting with $505. Would you like to play a hand? no
-You left the game with $505.
+- **Functions:**
+  - `load_report_cards`: Loads all student report cards into memory.
+  - `add_student_average`: Calculates the average marks for each student.
+  - `get_student_average`: Computes the overall average student mark.
+  - `get_subject_average`: Calculates averages for each subject and identifies the hardest and easiest subjects.
+  - `get_grade_average`: Calculates grade-wise averages to identify the best and worst-performing grades.
 
-How It Works
+---
 
-Game Start:
+## Requirements
 
-Players start with a balance of $500.
+- Python 3.x
+- JSON module (built-in)
+- Ensure that the `students` folder with 1,000 JSON files is in the same directory as the script.
 
-The game asks if the player wants to play a hand.
+---
 
-Betting:
+## Usage
 
-Players place a bet between $1 and their current balance.
+1. Clone or download the project.
+2. Ensure the `students` folder is correctly placed.
+3. Run the `main.py` script using Python:
 
-Bets are validated to ensure they are within limits.
+   ```bash
+   python main.py
+   ```
 
-Card Dealing:
+4. View the output in the terminal.
 
-Two cards are dealt to both the player and the dealer.
+---
 
-The player's cards are face-up, while one of the dealer's cards is face-down.
+## Future Improvements
 
-Player's Turn:
+- Add support for additional metrics, such as standard deviation or median marks.
+- Enhance performance for handling larger datasets.
+- Include a graphical user interface (GUI) for better usability.
+- Allow filtering and exporting of analyzed data.
 
-Players decide to "hit" (draw a card) or "stay" (end their turn).
-
-If the player's hand value exceeds 21, they bust and lose the round.
-
-Dealer's Turn:
-
-The dealer reveals the face-down card.
-
-The dealer hits until the hand value is 17 or more.
-
-If the dealer busts, the player wins.
-
-End of Round:
-
-The winner is determined based on hand values.
-
-Bets are settled, and the game resets for the next round.
-
-Code Structure
-
-Card Class: Represents individual cards with suit and value.
-
-Deck Class: Creates and shuffles a standard 52-card deck.
-
-Hand Class: Manages cards in a player's or dealer's hand and calculates hand value.
-
-Player Class: Extends the dealer to add balance and betting functionality.
-
-Dealer Class: Manages the dealer's hand and actions.
-
-Game Class: Implements game logic, including betting, card dealing, and turn handling.
-
-Main Script: Starts the game and handles user interaction.
-
-Requirements
-
-Python 3.x
-
-Future Improvements
-
-Add advanced Blackjack rules, such as splitting and doubling down.
-
-Enhance user interface with graphical elements or web integration.
-
-Support multiplayer functionality.
-
-Save and load player progress.
